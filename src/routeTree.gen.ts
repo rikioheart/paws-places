@@ -10,33 +10,92 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AgendaRouteImport } from './routes/agenda'
+import { Route as AnnuaireRouteImport } from './routes/annuaire'
+import { Route as AssociationRouteImport } from './routes/association'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as PartenairesRouteImport } from './routes/partenaires'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AgendaRoute = AgendaRouteImport.update({
+  id: '/agenda',
+  path: '/agenda',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnnuaireRoute = AnnuaireRouteImport.update({
+  id: '/annuaire',
+  path: '/annuaire',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssociationRoute = AssociationRouteImport.update({
+  id: '/association',
+  path: '/association',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartenairesRoute = PartenairesRouteImport.update({
+  id: '/partenaires',
+  path: '/partenaires',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/agenda': typeof AgendaRoute
+  '/annuaire': typeof AnnuaireRoute
+  '/association': typeof AssociationRoute
+  '/contact': typeof ContactRoute
+  '/partenaires': typeof PartenairesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/agenda': typeof AgendaRoute
+  '/annuaire': typeof AnnuaireRoute
+  '/association': typeof AssociationRoute
+  '/contact': typeof ContactRoute
+  '/partenaires': typeof PartenairesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/agenda': typeof AgendaRoute
+  '/annuaire': typeof AnnuaireRoute
+  '/association': typeof AssociationRoute
+  '/contact': typeof ContactRoute
+  '/partenaires': typeof PartenairesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/agenda' | '/annuaire' | '/association' | '/contact' | '/partenaires'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    '/' | '/agenda' | '/annuaire' | '/association' | '/contact' | '/partenaires'
+  id:
+    | '__root__'
+    | '/'
+    | '/agenda'
+    | '/annuaire'
+    | '/association'
+    | '/contact'
+    | '/partenaires'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AgendaRoute: typeof AgendaRoute
+  AnnuaireRoute: typeof AnnuaireRoute
+  AssociationRoute: typeof AssociationRoute
+  ContactRoute: typeof ContactRoute
+  PartenairesRoute: typeof PartenairesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +107,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/agenda': {
+      id: '/agenda'
+      path: '/agenda'
+      fullPath: '/agenda'
+      preLoaderRoute: typeof AgendaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/annuaire': {
+      id: '/annuaire'
+      path: '/annuaire'
+      fullPath: '/annuaire'
+      preLoaderRoute: typeof AnnuaireRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/association': {
+      id: '/association'
+      path: '/association'
+      fullPath: '/association'
+      preLoaderRoute: typeof AssociationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partenaires': {
+      id: '/partenaires'
+      path: '/partenaires'
+      fullPath: '/partenaires'
+      preLoaderRoute: typeof PartenairesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AgendaRoute: AgendaRoute,
+  AnnuaireRoute: AnnuaireRoute,
+  AssociationRoute: AssociationRoute,
+  ContactRoute: ContactRoute,
+  PartenairesRoute: PartenairesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
