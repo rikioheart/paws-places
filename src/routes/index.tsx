@@ -17,7 +17,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const next = EVENTS[0];
+  const next = EVENTS[0]!;
   return (
     <>
       <section className="relative h-[100svh] min-h-[640px] overflow-hidden">

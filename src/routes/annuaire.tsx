@@ -7,7 +7,10 @@ import { PageHero } from "@/components/SiteChrome";
 type S = { cat?: Category };
 
 export const Route = createFileRoute("/annuaire")({
-  validateSearch: (s: Record<string, unknown>): S => ({ cat: s.cat && s.cat in CATEGORIES ? (s.cat as Category) : undefined }),
+  validateSearch: (s: Record<string, unknown>): S => {
+    const c = s["cat"];
+    return { cat: typeof c === "string" && c in CATEGORIES ? (c as Category) : undefined };
+  },
   head: () => ({
     meta: [
       { title: "Carte & annuaire des pros canins — La Voix du Chien" },
