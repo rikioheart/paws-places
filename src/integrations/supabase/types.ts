@@ -14,7 +14,66 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contact_submissions: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+          subject: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name: string
+          subject?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+          subject?: string | null
+        }
+        Relationships: []
+      }
+      walk_registrations: {
+        Row: {
+          created_at: string
+          dog_name: string | null
+          email: string
+          event_id: string
+          id: string
+          name: string
+          participants: number
+          phone: string | null
+        }
+        Insert: {
+          created_at?: string
+          dog_name?: string | null
+          email: string
+          event_id: string
+          id?: string
+          name: string
+          participants?: number
+          phone?: string | null
+        }
+        Update: {
+          created_at?: string
+          dog_name?: string | null
+          email?: string
+          event_id?: string
+          id?: string
+          name?: string
+          participants?: number
+          phone?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
