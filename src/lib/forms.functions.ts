@@ -19,7 +19,7 @@ const regSchema = z.object({
 
 async function client() {
   const { createClient } = await import("@supabase/supabase-js");
-  return createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_PUBLISHABLE_KEY!, { auth: { persistSession: false } });
+  return createClient(process.env["SUPABASE_URL"]!, process.env["SUPABASE_PUBLISHABLE_KEY"]!, { auth: { persistSession: false } });
 }
 
 export const submitContact = createServerFn({ method: "POST" })

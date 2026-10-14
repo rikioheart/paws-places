@@ -4,7 +4,7 @@ import { Search, Phone, Mail, Clock, MapPin, X } from "lucide-react";
 import { CATEGORIES, PROS, type Category, type Pro } from "@/lib/data";
 import { PageHero } from "@/components/SiteChrome";
 
-type S = { cat?: Category };
+type S = { cat?: Category | undefined };
 
 export const Route = createFileRoute("/annuaire")({
   validateSearch: (s: Record<string, unknown>): S => {
