@@ -6,7 +6,16 @@ import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => { const article = ARTICLES.find((a) => a.slug === params.slug); if (!article) throw notFound(); return article; },
-  head: ({ loaderData }) => ({ meta: pageMeta(`${loaderData?.title ?? "Article"} — La Voix du Chien`, loaderData?.excerpt ?? "Le journal de La Voix du Chien", "article") }),
+  head: ({ loaderData, params }) => ({
+    meta: pageMeta(`${loaderData?.title ?? "Article"} — La Voix du Chien`, loaderData?.excerpt ?? "Le journal de La Voix du Chien", "article"),
+    links: [{ rel: "canonical", href: `/blog/${params.slug}` }],
+    scripts: loaderData ? [{ type: "application/ld+json", children: JSON.stringify({
+      "@context": "https://schema.org", "@type": "Article", headline: loaderData.title, datePublished: loaderData.date,
+      author: { "@type": "Organization", name: "La Voix du Chien" },
+      publisher: { "@type": "Organization", name: "La Voix du Chien" },
+      description: loaderData.excerpt, inLanguage: "fr", isBasedOn: loaderData.source,
+    }) }] : [],
+  }),
   component: ArticlePage,
 });
 

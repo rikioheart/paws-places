@@ -7,13 +7,21 @@ import { CATEGORIES, MEMBERSHIP_URL, PROS } from "@/lib/data";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "La Voix du Chien — Association canine 77, 45, 89, 91" },
-      { name: "description", content: "Trouvez éducateurs, pet sitters et pros du bien-être canin, rejoignez nos balades collectives et profitez des codes promo de nos partenaires éthiques." },
+      { title: "La Voix du Chien — Éducation canine & association en 77, 45, 89, 91" },
+      { name: "description", content: "Un réseau solidaire pour mieux comprendre votre chien : éducateurs canins, balades, ateliers et conseils en Seine-et-Marne, Loiret, Yonne et Essonne." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:title", content: "La Voix du Chien — Association canine" },
       { property: "og:description", content: "Carte des pros canins, balades collectives et partenaires éthiques en 77, 45, 89 et 91." },
     ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify({
+      "@context": "https://schema.org", "@type": "Organization", name: "La Voix du Chien", foundingDate: "2024-07-24",
+      founder: ["Océane Ripoll", "Marie Berrier", "Aurélien Ragot"].map(name => ({ "@type": "Person", name })),
+      areaServed: ["Seine-et-Marne", "Loiret", "Yonne", "Essonne"],
+      description: "Association réunissant familles et professionnels autour de l’éducation canine positive et du bien-être des chiens.",
+      sameAs: [MEMBERSHIP_URL],
+    }) }],
   }),
   component: Index,
 });
