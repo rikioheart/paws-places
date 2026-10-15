@@ -1,8 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { MapPin, Clock, Users, X } from "lucide-react";
 import { toast } from "sonner";
-import { EVENTS, type WalkEvent } from "@/lib/data";
+import { EVENTS, ACTIVITY_REQUIREMENTS, type WalkEvent } from "@/lib/data";
+import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/SiteChrome";
 import { registerWalk } from "@/lib/forms.functions";
 
@@ -11,6 +12,8 @@ export const Route = createFileRoute("/agenda")({
     meta: [
       { title: "Agenda des balades collectives — La Voix du Chien" },
       { name: "description", content: "Balades collectives, ateliers et formations canines en 77, 45, 89 et 91. Inscrivez-vous en ligne." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:title", content: "Agenda des balades et activités canines" },
       { property: "og:description", content: "Rejoignez nos prochaines balades collectives avec votre chien." },
     ],
@@ -26,9 +29,16 @@ function Agenda() {
   return (
     <>
       <PageHero kicker="Agenda" title="On se retrouve pour une balade ?">
-        Balades collectives, ateliers et formations : choisissez, inscrivez-vous, venez avec votre chien.
+        Des rencontres pour découvrir l’univers de votre chien, avec des professionnels passionnés. Les inscriptions ouvrent lorsque les dates sont annoncées.
       </PageHero>
       <section className="mx-auto max-w-5xl px-6 py-12">
+        {!EVENTS.length && <div className="border-l-4 border-accent bg-secondary p-7">
+          <h2 className="text-3xl font-semibold">Les prochaines dates se préparent.</h2>
+          <p className="mt-3 text-muted-foreground">Aucune prochaine date n’est actuellement publiée sur le site officiel. Contactez l’association pour connaître les balades, ateliers et initiations à venir.</p>
+          {ACTIVITY_REQUIREMENTS.behavioralAssessmentRequired && <p className="mt-4 text-muted-foreground">Avant toute activité, un bilan comportemental est obligatoire. Un bilan réalisé auprès d’un partenaire peut être réutilisé pour les autres activités.</p>}
+          <p className="mt-4 text-muted-foreground">Pour une activité organisée par un partenaire, l’inscription se fait directement auprès de lui.</p>
+          <Button asChild className="mt-6"><Link to="/contact">Me renseigner sur les prochaines rencontres</Link></Button>
+        </div>}
         <div className="flex flex-wrap gap-2">
           {kinds.map((k) => (
             <button key={k} onClick={() => setKind(k)} className={`rounded-full px-4 py-2 text-sm font-semibold ${kind === k ? "bg-accent text-accent-foreground" : "bg-secondary"}`}>{k}</button>

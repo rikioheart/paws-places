@@ -1,12 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { MEMBERSHIP_URL } from "@/lib/data";
 import { Menu, X, PawPrint } from "lucide-react";
 
 const NAV = [
-  { to: "/annuaire", label: "Carte & annuaire" },
+  { to: "/annuaire", label: "Annuaire" },
+  { to: "/services", label: "Activités" },
   { to: "/partenaires", label: "Partenaires" },
   { to: "/agenda", label: "Agenda" },
   { to: "/association", label: "L'association" },
+  { to: "/blog", label: "Journal" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -19,17 +23,17 @@ export function Header() {
           <span className="grid h-9 w-9 place-items-center rounded-full bg-accent text-accent-foreground"><PawPrint className="h-5 w-5" /></span>
           La Voix du Chien
         </Link>
-        <nav className="hidden gap-1 md:flex">
+        <nav className="hidden gap-0 lg:flex">
           {NAV.map((n) => (
-            <Link key={n.to} to={n.to} className="rounded-full px-3 py-1.5 text-sm font-medium transition hover:bg-secondary" activeProps={{ className: "bg-primary text-primary-foreground hover:bg-primary" }}>
+            <Link key={n.to} to={n.to} className="rounded-full px-2 py-1.5 text-sm font-medium transition hover:bg-secondary" activeProps={{ className: "bg-primary text-primary-foreground hover:bg-primary" }}>
               {n.label}
             </Link>
           ))}
         </nav>
-        <button className="md:hidden" aria-label="Menu" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
+        <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button>
       </div>
       {open && (
-        <nav className="mx-auto mt-2 flex max-w-6xl flex-col rounded-3xl border bg-card p-3 shadow-lg md:hidden">
+        <nav className="mx-auto mt-2 flex max-w-6xl flex-col rounded-3xl border bg-card p-3 shadow-lg lg:hidden">
           {NAV.map((n) => (
             <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="rounded-xl px-4 py-3 font-medium hover:bg-secondary">{n.label}</Link>
           ))}
@@ -51,7 +55,8 @@ export function Footer() {
           {NAV.map((n) => <Link key={n.to} to={n.to} className="opacity-80 hover:opacity-100">{n.label}</Link>)}
         </div>
         <div className="text-sm">
-          <a href="/guide-vacances-avec-son-chien.pdf" download className="inline-block rounded-full bg-sun px-5 py-2.5 font-semibold text-foreground">📘 Guide vacances gratuit</a>
+          <Button asChild variant="secondary"><a href={MEMBERSHIP_URL} target="_blank" rel="noopener noreferrer">Adhérer sur HelloAsso ↗</a></Button>
+          <p className="mt-4"><Link to="/contact" className="underline">Demander le guide vacances gratuit</Link></p>
           <p className="mt-4 opacity-70">© {new Date().getFullYear()} La Voix du Chien</p>
         </div>
       </div>

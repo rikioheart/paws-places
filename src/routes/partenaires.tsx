@@ -10,6 +10,8 @@ export const Route = createFileRoute("/partenaires")({
     meta: [
       { title: "Partenaires & boutiques éthiques — La Voix du Chien" },
       { name: "description", content: "Nos boutiques partenaires éthiques et leurs codes promo exclusifs pour les membres de La Voix du Chien." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:title", content: "Partenaires & codes promo — La Voix du Chien" },
       { property: "og:description", content: "Alimentation, accessoires, jeux : des marques éthiques et des réductions exclusives." },
     ],

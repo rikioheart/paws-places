@@ -8,6 +8,8 @@ export const Route = createFileRoute("/association")({
     meta: [
       { title: "L'association — La Voix du Chien" },
       { name: "description", content: "Découvrez La Voix du Chien, ses valeurs, ses bénévoles et téléchargez le guide gratuit « Partir en vacances avec son chien »." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:title", content: "Qui sommes-nous ? — La Voix du Chien" },
       { property: "og:description", content: "Une association locale et chaleureuse au service des chiens et de leurs humains." },
     ],

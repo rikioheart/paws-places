@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { Search, Phone, Mail, Clock, MapPin, X } from "lucide-react";
+import { Search, Phone, Mail, Clock, MapPin, X, ExternalLink } from "lucide-react";
 import { CATEGORIES, PROS, type Category, type Pro } from "@/lib/data";
+import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/SiteChrome";
 
 type S = { cat?: Category | undefined };
@@ -15,6 +16,8 @@ export const Route = createFileRoute("/annuaire")({
     meta: [
       { title: "Carte & annuaire des pros canins — La Voix du Chien" },
       { name: "description", content: "Carte interactive des éducateurs, photographes, pet sitters, pros du bien-être et du secours canin en 77, 45, 89, 91." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:title", content: "Carte & annuaire des professionnels canins" },
       { property: "og:description", content: "Filtrez par métier et département et trouvez le bon pro près de chez vous." },
     ],
@@ -23,7 +26,7 @@ export const Route = createFileRoute("/annuaire")({
 });
 
 const DEPTS = ["77", "45", "89", "91", "Limitrophe"] as const;
-const B = { minLng: 1.95, maxLng: 3.8, minLat: 47.7, maxLat: 48.75 };
+const B = { minLng: 1.65, maxLng: 4.15, minLat: 47.25, maxLat: 49.5 };
 const proj = (lat: number, lng: number) => ({
   x: ((lng - B.minLng) / (B.maxLng - B.minLng)) * 100,
   y: ((B.maxLat - lat) / (B.maxLat - B.minLat)) * 100,
@@ -58,7 +61,7 @@ function Annuaire() {
   return (
     <>
       <PageHero kicker="Carte interactive" title="Les pros du chien, près de chez vous.">
-        Cliquez sur un repère ou filtrez instantanément par métier et par secteur.
+        Un réseau de professionnels en Seine-et-Marne, Loiret, Yonne, Essonne et alentours. Les repères indiquent les communes, pas les adresses de consultation.
       </PageHero>
       <section className="mx-auto max-w-6xl px-6 py-10">
         <div className="flex flex-col gap-4 rounded-3xl border bg-card p-5 shadow-sm">
@@ -104,7 +107,8 @@ function Annuaire() {
                 </div>
               );
             })}
-            {list.map((p) => {
+            {list.filter((p) => p.lat !== undefined && p.lng !== undefined).map((p) => {
+              if (p.lat === undefined || p.lng === undefined) return null;
               const c = proj(p.lat, p.lng);
               const active = sel?.id === p.id || hover === p.id;
               return (
@@ -118,7 +122,7 @@ function Annuaire() {
               );
             })}
             {sel && (
-              <div className="absolute inset-x-3 bottom-3 z-20 rounded-2xl border bg-card p-5 shadow-2xl animate-in slide-in-from-bottom-4">
+              <div className="absolute inset-x-3 bottom-3 z-20 max-h-[85%] overflow-y-auto rounded-2xl border bg-card p-5 shadow-2xl animate-in slide-in-from-bottom-4">
                 <button onClick={() => setSel(null)} className="absolute right-3 top-3" aria-label="Fermer"><X className="h-5 w-5" /></button>
                 <ProDetails p={sel} />
               </div>
@@ -153,9 +157,10 @@ function ProDetails({ p }: { p: Pro }) {
       <div className="mt-3 grid gap-1.5 text-sm sm:grid-cols-2">
         <span className="flex items-center gap-2"><MapPin className="h-4 w-4 text-accent" /> {p.zone}</span>
         <span className="flex items-center gap-2"><Clock className="h-4 w-4 text-accent" /> {p.hours}</span>
-        <a href={`tel:${p.phone.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:underline"><Phone className="h-4 w-4 text-accent" /> {p.phone}</a>
-        <a href={`mailto:${p.email}`} className="flex items-center gap-2 hover:underline"><Mail className="h-4 w-4 text-accent" /> {p.email}</a>
+        {p.phone && <a href={`tel:${p.phone.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:underline"><Phone className="h-4 w-4 text-accent" /> {p.phone}</a>}
+        {p.email && <a href={`mailto:${p.email}`} className="flex items-center gap-2 hover:underline"><Mail className="h-4 w-4 text-accent" /> {p.email}</a>}
       </div>
+      <Button asChild variant="link" className="mt-3 px-0"><a href={p.website} target="_blank" rel="noopener noreferrer">Contacter ce professionnel <ExternalLink /></a></Button>
     </div>
   );
 }
