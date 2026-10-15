@@ -9,6 +9,8 @@ export const Route = createFileRoute("/contact")({
     meta: [
       { title: "Contact — La Voix du Chien" },
       { name: "description", content: "Une question, un partenariat, envie de devenir bénévole ? Contactez l'association La Voix du Chien." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:title", content: "Contacter La Voix du Chien" },
       { property: "og:description", content: "Écrivez-nous, nous vous répondrons avec plaisir." },
     ],
@@ -16,7 +18,7 @@ export const Route = createFileRoute("/contact")({
   component: Contact,
 });
 
-const SUBJECTS = ["Question générale", "Devenir partenaire", "Référencer mon activité", "Bénévolat", "Autre"];
+const SUBJECTS = ["Question générale", "Bilan comportemental", "Adhésion", "Guide vacances gratuit", "Devenir partenaire", "Référencer mon activité", "Bénévolat", "Autre"];
 
 function Contact() {
   const [subject, setSubject] = useState(SUBJECTS[0]);
@@ -35,7 +37,7 @@ function Contact() {
   const field = "w-full rounded-2xl border bg-background px-5 py-4 outline-none transition focus:ring-2 focus:ring-ring";
   return (
     <>
-      <PageHero kicker="Contact" title="Un mot, une idée, une truffe à présenter ?" />
+      <PageHero kicker="Faisons connaissance" title="Parlons de vous et de votre chien.">Racontez-nous votre quotidien, vos questions ou votre projet. Nous chercherons ensemble le professionnel ou l’activité qui vous correspond.</PageHero>
       <section className="mx-auto max-w-3xl px-6 py-12">
         {state === "done" ? (
           <div className="rounded-3xl bg-card p-10 text-center shadow-lg">
