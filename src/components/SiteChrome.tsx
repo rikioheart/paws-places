@@ -69,7 +69,7 @@ export function Footer() {
 
 export function PageHero({ kicker, title, children }: { kicker: string; title: string; children?: React.ReactNode }) {
   return (
-    <section className="relative overflow-hidden bg-primary pb-16 pt-36 text-primary-foreground">
+    <section className="relative overflow-hidden bg-navy pb-16 pt-36 text-navy-foreground" style={{ backgroundImage: "var(--gradient-night)" }}>
       <PawPrint className="absolute -right-10 -top-6 h-72 w-72 rotate-12 opacity-10" />
       <div className="relative mx-auto max-w-6xl px-6">
         <p className="text-sm font-semibold uppercase tracking-widest text-sun">{kicker}</p>
