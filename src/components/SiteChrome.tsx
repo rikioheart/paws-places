@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MEMBERSHIP_URL } from "@/lib/data";
 import { Menu, X, PawPrint } from "lucide-react";
+import logo from "@/assets/logo-lvdc.png";
 
 const NAV = [
   { to: "/annuaire", label: "Annuaire" },
@@ -19,9 +20,9 @@ export function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4">
       <div className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-border/60 bg-card/85 px-5 py-2.5 shadow-lg backdrop-blur-md">
-        <Link to="/" className="flex items-center gap-2 font-display text-lg font-semibold">
-          <span className="grid h-9 w-9 place-items-center rounded-full bg-accent text-accent-foreground"><PawPrint className="h-5 w-5" /></span>
-          La Voix du Chien
+        <Link to="/" className="flex items-center gap-2 font-display text-base font-bold text-primary">
+          <img src={logo} alt="Logo La Voix du Chien" width={40} height={40} className="h-10 w-10 rounded-full object-cover ring-2 ring-sun/60" />
+          <span className="leading-tight">La Voix du Chien<span className="block font-sans text-[11px] font-medium text-muted-foreground">Le chien au cœur</span></span>
         </Link>
         <nav className="hidden gap-0 lg:flex">
           {NAV.map((n) => (
@@ -45,10 +46,12 @@ export function Header() {
 
 export function Footer() {
   return (
-    <footer className="mt-24 bg-primary text-primary-foreground">
+    <footer className="mt-24 bg-navy text-navy-foreground">
       <div className="mx-auto grid max-w-6xl gap-8 px-6 py-14 md:grid-cols-3">
         <div>
+          <img src={logo} alt="" width={64} height={64} className="mb-4 h-16 w-16 rounded-full ring-2 ring-sun/60" />
           <p className="font-display text-2xl">La Voix du Chien</p>
+          <p className="mt-1 text-sm italic text-sun">Le chien au cœur, l’humain à ses côtés.</p>
           <p className="mt-2 text-sm opacity-80">Association au service des chiens et de leurs humains en Seine-et-Marne, Loiret, Yonne, Essonne et alentours.</p>
         </div>
         <div className="flex flex-col gap-2 text-sm">
