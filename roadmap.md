@@ -1,4 +1,5 @@
 # Content refresh
+- [ ] Add and verify a single AI recommendation conversation saved in the visitor's browser.
 - [x] Recover official partner offers, founders, services and articles from the supplied WordPress pages.
 - [x] Replace fictional content with verified information and integrate the blog.
 - [x] Improve the association story, join/contact calls to action and route search metadata.
