@@ -14,6 +14,7 @@ import { Route as AgendaRouteImport } from './routes/agenda'
 import { Route as AnnuaireRouteImport } from './routes/annuaire'
 import { Route as AssociationRouteImport } from './routes/association'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as ConseillerRouteImport } from './routes/conseiller'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as PartenairesRouteImport } from './routes/partenaires'
 import { Route as ServicesRouteImport } from './routes/services'
@@ -43,6 +44,11 @@ const AssociationRoute = AssociationRouteImport.update({
 const BlogRoute = BlogRouteImport.update({
   id: '/blog',
   path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConseillerRoute = ConseillerRouteImport.update({
+  id: '/conseiller',
+  path: '/conseiller',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -77,6 +83,7 @@ export interface FileRoutesByFullPath {
   '/annuaire': typeof AnnuaireRoute
   '/association': typeof AssociationRoute
   '/blog': typeof BlogRouteWithChildren
+  '/conseiller': typeof ConseillerRoute
   '/contact': typeof ContactRoute
   '/partenaires': typeof PartenairesRoute
   '/services': typeof ServicesRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByTo {
   '/annuaire': typeof AnnuaireRoute
   '/association': typeof AssociationRoute
   '/blog': typeof BlogRouteWithChildren
+  '/conseiller': typeof ConseillerRoute
   '/contact': typeof ContactRoute
   '/partenaires': typeof PartenairesRoute
   '/services': typeof ServicesRoute
@@ -102,6 +110,7 @@ export interface FileRoutesById {
   '/annuaire': typeof AnnuaireRoute
   '/association': typeof AssociationRoute
   '/blog': typeof BlogRouteWithChildren
+  '/conseiller': typeof ConseillerRoute
   '/contact': typeof ContactRoute
   '/partenaires': typeof PartenairesRoute
   '/services': typeof ServicesRoute
@@ -116,6 +125,7 @@ export interface FileRouteTypes {
     | '/annuaire'
     | '/association'
     | '/blog'
+    | '/conseiller'
     | '/contact'
     | '/partenaires'
     | '/services'
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/annuaire'
     | '/association'
     | '/blog'
+    | '/conseiller'
     | '/contact'
     | '/partenaires'
     | '/services'
@@ -140,6 +151,7 @@ export interface FileRouteTypes {
     | '/annuaire'
     | '/association'
     | '/blog'
+    | '/conseiller'
     | '/contact'
     | '/partenaires'
     | '/services'
@@ -153,6 +165,7 @@ export interface RootRouteChildren {
   AnnuaireRoute: typeof AnnuaireRoute
   AssociationRoute: typeof AssociationRoute
   BlogRoute: typeof BlogRouteWithChildren
+  ConseillerRoute: typeof ConseillerRoute
   ContactRoute: typeof ContactRoute
   PartenairesRoute: typeof PartenairesRoute
   ServicesRoute: typeof ServicesRoute
@@ -194,6 +207,13 @@ declare module '@tanstack/react-router' {
       path: '/blog'
       fullPath: '/blog'
       preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conseiller': {
+      id: '/conseiller'
+      path: '/conseiller'
+      fullPath: '/conseiller'
+      preLoaderRoute: typeof ConseillerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -250,6 +270,7 @@ const rootRouteChildren: RootRouteChildren = {
   AnnuaireRoute: AnnuaireRoute,
   AssociationRoute: AssociationRoute,
   BlogRoute: BlogRouteWithChildren,
+  ConseillerRoute: ConseillerRoute,
   ContactRoute: ContactRoute,
   PartenairesRoute: PartenairesRoute,
   ServicesRoute: ServicesRoute,
