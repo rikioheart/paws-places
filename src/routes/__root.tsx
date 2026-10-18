@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
   type ErrorComponentProps,
@@ -120,6 +121,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const isAdvisor = useRouterState({ select: (state) => state.location.pathname === "/conseiller" });
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -127,7 +129,7 @@ function RootComponent() {
       <Header />
       <main><Outlet /></main>
       <Footer />
-      <Button asChild className="fixed bottom-4 right-4 z-40 h-12 rounded-full px-4 shadow-lg"><Link to="/conseiller" aria-label="Parlons de votre chien avec le conseiller"><MessageCircle /><span className="hidden sm:inline">Parlons de votre chien</span></Link></Button>
+      {!isAdvisor && <Button asChild className="fixed bottom-4 right-4 z-40 h-12 rounded-full px-4 shadow-lg"><Link to="/conseiller" aria-label="Parlons de votre chien avec le conseiller"><MessageCircle /><span className="hidden sm:inline">Parlons de votre chien</span></Link></Button>}
       <Toaster richColors position="top-center" />
     </QueryClientProvider>
   );
