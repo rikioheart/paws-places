@@ -10,6 +10,8 @@
 <!-- LOVABLE:END -->
 
 ## Project rules
+- The public canine advisor uses AI Gateway behind a same-origin streaming server route, grounded in static official catalog data; this keeps credentials and recommendation instructions server-side.
+- Advisor history is one browser-local conversation of text UI message parts, persisted after user sends and successful assistant completion; this avoids cross-user server storage and incomplete-response persistence.
 - Directory pros, partners and events live as static data in src/lib/data.ts — simple to edit without an admin area.
 - Public forms (contact, walk registrations) insert via createServerFn in src/lib/forms.functions.ts into insert-only RLS tables — visitors can never read submissions.
 - The interactive map is a projected SVG/absolute-positioned layer (no map library) — SSR-safe and on-brand.

@@ -14,9 +14,11 @@ import { Route as AgendaRouteImport } from './routes/agenda'
 import { Route as AnnuaireRouteImport } from './routes/annuaire'
 import { Route as AssociationRouteImport } from './routes/association'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as ConseillerRouteImport } from './routes/conseiller'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as PartenairesRouteImport } from './routes/partenaires'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as ApiAdvisorRouteImport } from './routes/api/advisor'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -44,6 +46,11 @@ const BlogRoute = BlogRouteImport.update({
   path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConseillerRoute = ConseillerRouteImport.update({
+  id: '/conseiller',
+  path: '/conseiller',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -59,6 +66,11 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAdvisorRoute = ApiAdvisorRouteImport.update({
+  id: '/api/advisor',
+  path: '/api/advisor',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -71,9 +83,11 @@ export interface FileRoutesByFullPath {
   '/annuaire': typeof AnnuaireRoute
   '/association': typeof AssociationRoute
   '/blog': typeof BlogRouteWithChildren
+  '/conseiller': typeof ConseillerRoute
   '/contact': typeof ContactRoute
   '/partenaires': typeof PartenairesRoute
   '/services': typeof ServicesRoute
+  '/api/advisor': typeof ApiAdvisorRoute
   '/blog/$slug': typeof BlogSlugRoute
 }
 export interface FileRoutesByTo {
@@ -82,9 +96,11 @@ export interface FileRoutesByTo {
   '/annuaire': typeof AnnuaireRoute
   '/association': typeof AssociationRoute
   '/blog': typeof BlogRouteWithChildren
+  '/conseiller': typeof ConseillerRoute
   '/contact': typeof ContactRoute
   '/partenaires': typeof PartenairesRoute
   '/services': typeof ServicesRoute
+  '/api/advisor': typeof ApiAdvisorRoute
   '/blog/$slug': typeof BlogSlugRoute
 }
 export interface FileRoutesById {
@@ -94,9 +110,11 @@ export interface FileRoutesById {
   '/annuaire': typeof AnnuaireRoute
   '/association': typeof AssociationRoute
   '/blog': typeof BlogRouteWithChildren
+  '/conseiller': typeof ConseillerRoute
   '/contact': typeof ContactRoute
   '/partenaires': typeof PartenairesRoute
   '/services': typeof ServicesRoute
+  '/api/advisor': typeof ApiAdvisorRoute
   '/blog/$slug': typeof BlogSlugRoute
 }
 export interface FileRouteTypes {
@@ -107,9 +125,11 @@ export interface FileRouteTypes {
     | '/annuaire'
     | '/association'
     | '/blog'
+    | '/conseiller'
     | '/contact'
     | '/partenaires'
     | '/services'
+    | '/api/advisor'
     | '/blog/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -118,9 +138,11 @@ export interface FileRouteTypes {
     | '/annuaire'
     | '/association'
     | '/blog'
+    | '/conseiller'
     | '/contact'
     | '/partenaires'
     | '/services'
+    | '/api/advisor'
     | '/blog/$slug'
   id:
     | '__root__'
@@ -129,9 +151,11 @@ export interface FileRouteTypes {
     | '/annuaire'
     | '/association'
     | '/blog'
+    | '/conseiller'
     | '/contact'
     | '/partenaires'
     | '/services'
+    | '/api/advisor'
     | '/blog/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -141,9 +165,11 @@ export interface RootRouteChildren {
   AnnuaireRoute: typeof AnnuaireRoute
   AssociationRoute: typeof AssociationRoute
   BlogRoute: typeof BlogRouteWithChildren
+  ConseillerRoute: typeof ConseillerRoute
   ContactRoute: typeof ContactRoute
   PartenairesRoute: typeof PartenairesRoute
   ServicesRoute: typeof ServicesRoute
+  ApiAdvisorRoute: typeof ApiAdvisorRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -183,6 +209,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/conseiller': {
+      id: '/conseiller'
+      path: '/conseiller'
+      fullPath: '/conseiller'
+      preLoaderRoute: typeof ConseillerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -202,6 +235,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/advisor': {
+      id: '/api/advisor'
+      path: '/api/advisor'
+      fullPath: '/api/advisor'
+      preLoaderRoute: typeof ApiAdvisorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/$slug': {
@@ -230,9 +270,11 @@ const rootRouteChildren: RootRouteChildren = {
   AnnuaireRoute: AnnuaireRoute,
   AssociationRoute: AssociationRoute,
   BlogRoute: BlogRouteWithChildren,
+  ConseillerRoute: ConseillerRoute,
   ContactRoute: ContactRoute,
   PartenairesRoute: PartenairesRoute,
   ServicesRoute: ServicesRoute,
+  ApiAdvisorRoute: ApiAdvisorRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

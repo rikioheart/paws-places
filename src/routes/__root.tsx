@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
   type ErrorComponentProps,
@@ -12,6 +13,8 @@ import { useEffect, type ReactNode } from "react";
 
 import { Header, Footer } from "@/components/SiteChrome";
 import { Toaster } from "@/components/ui/sonner";
+import { Button } from "@/components/ui/button";
+import { MessageCircle } from "lucide-react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -118,6 +121,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const isAdvisor = useRouterState({ select: (state) => state.location.pathname === "/conseiller" });
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -125,6 +129,7 @@ function RootComponent() {
       <Header />
       <main><Outlet /></main>
       <Footer />
+      {!isAdvisor && <Button asChild className="fixed bottom-4 right-4 z-40 h-12 rounded-full px-4 shadow-lg"><Link to="/conseiller" aria-label="Parlons de votre chien avec le conseiller"><MessageCircle /><span className="hidden sm:inline">Parlons de votre chien</span></Link></Button>}
       <Toaster richColors position="top-center" />
     </QueryClientProvider>
   );
