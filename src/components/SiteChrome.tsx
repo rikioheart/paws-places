@@ -9,7 +9,7 @@ const NAV = [
   { to: "/annuaire", label: "Annuaire" },
   { to: "/services", label: "Activités" },
   { to: "/partenaires", label: "Partenaires" },
-  { to: "/agenda", label: "Agenda" },
+  { to: "/agenda", label: "Activités & Agenda" },
   { to: "/association", label: "L'association" },
   { to: "/blog", label: "Journal" },
   { to: "/contact", label: "Contact" },

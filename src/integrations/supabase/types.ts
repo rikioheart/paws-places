@@ -41,6 +41,36 @@ export type Database = {
         }
         Relationships: []
       }
+      first_contact_requests: {
+        Row: {
+          answers: Json
+          audience: string
+          created_at: string
+          email: string
+          id: string
+          name: string
+          phone: string | null
+        }
+        Insert: {
+          answers?: Json
+          audience: string
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          phone?: string | null
+        }
+        Update: {
+          answers?: Json
+          audience?: string
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          phone?: string | null
+        }
+        Relationships: []
+      }
       walk_registrations: {
         Row: {
           created_at: string
