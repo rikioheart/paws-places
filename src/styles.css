@@ -1,6 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import "leaflet/dist/leaflet.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -96,3 +97,9 @@
 @utility animate-ping-soft { animation: ping-soft 1.8s ease-out infinite; }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+.leaflet-container { font-family: var(--font-sans); background: var(--secondary); }
+.professional-pin { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; border: 3px solid var(--card); box-shadow: var(--shadow-panel); cursor: pointer; font-size: 20px; background: var(--pin-color); }
+.pin-educ { --pin-color: var(--cat-educ); } .pin-photo { --pin-color: var(--cat-photo); } .pin-bien { --pin-color: var(--cat-bien); } .pin-sit { --pin-color: var(--cat-sit); } .pin-secours { --pin-color: var(--cat-secours); }
+.professional-pin.is-selected, .professional-pin:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+.leaflet-control a { color: var(--foreground); }

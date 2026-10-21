@@ -1,5 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, MapPin, Tag, CalendarDays, Download } from "lucide-react";
+import { ArrowRight, MapPin, Tag, CalendarDays } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { GuideDownload } from "@/components/GuideDownload";
+import { AudienceJourneys } from "@/components/AudienceJourneys";
 import hero from "@/assets/hero.jpg";
 import asso from "@/assets/asso.jpg";
 import { CATEGORIES, MEMBERSHIP_URL, PROS } from "@/lib/data";
@@ -7,7 +10,7 @@ import { CATEGORIES, MEMBERSHIP_URL, PROS } from "@/lib/data";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "La Voix du Chien — Éducation canine & association en 77, 45, 89, 91" },
+      { title: "La Voix du Chien — Association canine & activités en 77, 45, 89, 91" },
       { name: "description", content: "Un réseau solidaire pour mieux comprendre votre chien : éducateurs canins, balades, ateliers et conseils en Seine-et-Marne, Loiret, Yonne et Essonne." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -30,26 +33,26 @@ function Index() {
 
   return (
     <>
-      <section className="relative h-[88svh] min-h-[610px] overflow-hidden">
+      <section className="relative h-[80svh] min-h-[560px] max-h-[850px] overflow-hidden">
         <img src={hero} alt="Balade collective de chiens en forêt au coucher du soleil" width={1920} height={1088} className="absolute inset-0 h-full w-full scale-105 object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/30 to-transparent" />
         <div className="relative mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-20 text-primary-foreground">
           <p className="mb-4 inline-flex w-fit items-center gap-2 rounded-full bg-card/20 px-4 py-1.5 text-sm backdrop-blur">🐾 Seine-et-Marne · Loiret · Yonne · Essonne</p>
-          <h1 className="max-w-4xl text-5xl font-semibold leading-[1.02] md:text-8xl">
+          <h1 className="max-w-4xl text-5xl font-semibold leading-[1.02] md:text-7xl">
             La Voix <em className="text-sun">du Chien</em>
           </h1>
-          <p className="mt-6 max-w-xl text-lg opacity-90">Depuis le 24 juillet 2024, trois éducateurs et un réseau solidaire vous aident à mieux comprendre votre chien. Éducation bienveillante, émotions et moments partagés : avançons ensemble.</p>
+          <p className="mt-6 max-w-xl text-lg opacity-90">Mieux comprendre votre chien, partager une balade et trouver du soutien : rejoignez un collectif de familles et de professionnels où chacun apporte son expérience.</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/annuaire" className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 font-semibold text-accent-foreground shadow-xl transition hover:scale-105">Explorer la carte <ArrowRight className="h-4 w-4" /></Link>
-            <Link to="/agenda" className="rounded-full border border-primary-foreground/50 px-6 py-3.5 font-semibold backdrop-blur transition hover:bg-card/20">Prochaines balades</Link>
+            <Button asChild size="lg"><Link to="/agenda">Vivre des moments avec mon chien <ArrowRight /></Link></Button>
+            <Button asChild variant="secondary" size="lg"><Link to="/contact" search={{ profil: "professionnel" }}>Rejoindre le réseau professionnel</Link></Button>
           </div>
         </div>
       </section>
 
       <section className="mx-auto -mt-10 grid max-w-6xl gap-4 px-6 md:grid-cols-3 relative z-10">
         {[
-          { to: "/annuaire" as const, icon: MapPin, t: `${PROS.length} professionnels partenaires`, d: "Éducateurs, photographes, bien-être, pet sitting, secours." },
-          { to: "/partenaires" as const, icon: Tag, t: "Des partenaires engagés", d: "Boutiques, créations artisanales et avantages publiés par nos partenaires." },
+          { to: "/annuaire" as const, icon: MapPin, t: `${PROS.length} professionnels de terrain`, d: "Éducateurs, photographes, bien-être, pet sitting, secours." },
+          { to: "/partenaires" as const, icon: Tag, t: "Boutiques & avantages", d: "Boutiques, créations artisanales et avantages publiés par nos partenaires." },
           { to: "/agenda" as const, icon: CalendarDays, t: "Balades collectives", d: "Se rencontrer, observer et apprendre à mieux vivre ensemble." },
         ].map((c) => (
           <Link key={c.to} to={c.to} className="group rounded-3xl border bg-card p-6 shadow-lg transition hover:-translate-y-1 hover:shadow-2xl">
@@ -61,7 +64,8 @@ function Index() {
         ))}
       </section>
 
-      <section className="mx-auto mt-24 max-w-6xl px-6">
+      <div className="mt-14"><AudienceJourneys /></div>
+      <section className="mx-auto mt-16 max-w-6xl px-6">
         <h2 className="text-4xl font-semibold md:text-5xl">Qui cherchez-vous ?</h2>
         <div className="mt-8 flex flex-wrap gap-3">
           {(Object.keys(CATEGORIES) as (keyof typeof CATEGORIES)[]).map((k) => (
@@ -77,11 +81,11 @@ function Index() {
         <div>
           <p className="font-semibold uppercase tracking-widest text-accent">L'association</p>
           <h2 className="mt-3 text-4xl font-semibold md:text-5xl">Des humains au service des chiens.</h2>
-          <p className="mt-5 text-lg text-muted-foreground">Océane Ripoll, Marie Berrier et Aurélien Ragot ont uni leurs expériences autour d’une conviction : mieux comprendre le chien change aussi la vie de son humain. Leur association relie familles et professionnels dans un esprit de respect, de coopération et d’entraide.</p>
+          <p className="mt-5 text-lg text-muted-foreground">Depuis 2024, familles, bénévoles et professionnels font vivre La Voix du Chien. Des expériences qui se croisent, des savoirs qui circulent et des projets qui prennent forme ensemble : le collectif grandit grâce à chaque participation.</p>
           <div className="mt-8 rounded-3xl bg-sun/40 p-6">
             <p className="font-display text-2xl">📘 Partir en vacances avec son chien</p>
             <p className="mt-1 text-muted-foreground">Notre guide gratuit : papiers, trousse, trajet, hébergement.</p>
-            <Link to="/contact" className="mt-4 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 font-semibold text-primary-foreground"><Download className="h-4 w-4" /> Demander le guide gratuit</Link>
+            <div className="mt-4"><GuideDownload /></div>
           </div>
           <Link to="/association" className="mt-6 inline-flex items-center gap-2 font-semibold text-accent">Découvrir notre histoire <ArrowRight className="h-4 w-4" /></Link>
         </div>

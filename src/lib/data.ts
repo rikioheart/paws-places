@@ -22,6 +22,7 @@ export type Pro = {
   email?: string;
   description: string;
   website: string;
+  socials?: { label: string; url: string }[];
 };
 
 // Imported from the official WordPress partners page; map coordinates mark towns, not business addresses.
@@ -291,7 +292,7 @@ export const PROS: Pro[] = [
     "id": "pro-21"
   }
 ];
-export type Partner = { name: string; type: string; desc: string; code?: string; perk: string; conditions?: string; website: string; email?: string };
+export type Partner = { name: string; type: string; desc: string; code?: string; perk: string; conditions?: string; website: string; email?: string; socials?: { label: string; url: string }[] };
 export const PARTNERS: Partner[] = [
   {
     "name": "Cernunos",
@@ -354,5 +355,6 @@ export type WalkEvent = { id: string; title: string; date: string; time: string;
 // No dated upcoming event is published in the supplied official source.
 export const EVENTS: WalkEvent[] = [];
 export const MEMBERSHIP_URL = "https://www.helloasso.com/associations/association-la-voix-du-chien";
-export const ACTIVITY_REQUIREMENTS = { behavioralAssessmentRequired: true, partnerAssessmentReusable: true };
+export const ACTIVITY_REQUIREMENTS = { behavioralAssessmentRequired: false, partnerAssessmentReusable: true };
+export const ASSOCIATION_EMAIL = "associationlavoixduchien@gmail.com";
 export const CONTENT_SOURCES = ["https://lavoixduchien.fr/services/", "https://lavoixduchien.fr/partenaires/", "https://lavoixduchien.fr/lassociation/", "https://lavoixduchien.fr/blog/"];
