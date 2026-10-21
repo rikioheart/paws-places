@@ -7,7 +7,7 @@ import logo from "@/assets/logo-lvdc.png";
 
 const NAV = [
   { to: "/annuaire", label: "Annuaire" },
-  { to: "/services", label: "Activités" },
+  { to: "/services", label: "Services" },
   { to: "/partenaires", label: "Partenaires" },
   { to: "/agenda", label: "Activités & Agenda" },
   { to: "/association", label: "L'association" },
