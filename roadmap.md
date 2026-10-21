@@ -1,7 +1,9 @@
-# Content refresh
-- [x] Add and verify a single AI recommendation conversation saved in the visitor's browser.
-- [x] Recover official partner offers, founders, services and articles from the supplied WordPress pages.
-- [x] Replace fictional content with verified information and integrate the blog.
-- [x] Improve the association story, join/contact calls to action and route search metadata.
-- [x] Verify navigation, offer copying and mobile/desktop presentation.
-- [ ] Restore direct guide download — blocked: official PDF not exposed publicly; ask for the original file. Guide requests currently use contact.
+# Visitor experience
+- [ ] Clarify family/professional journeys and membership benefits.
+- [ ] Foreground the collective and remove founder contact details.
+- [ ] Simplify contact with optional profile questionnaires.
+- [ ] Replace schematic map with OpenStreetMap and side details.
+- [ ] Distinguish directory and commercial partners; simplify activities reservations.
+- [ ] Improve article reading with supporting images.
+- [ ] Verify public journeys and tests.
+- [ ] Activate direct guide download — blocked until the original PDF is supplied; prepare unavailable button now.

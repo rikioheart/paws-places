@@ -25,7 +25,7 @@ describe("visitor advisor", () => {
     const serialized = prompt.split("Catalogue officiel : ")[1];
     if (!serialized) throw new Error("Missing catalog");
     const catalog = JSON.parse(serialized);
-    expect(catalog.requirements.behavioralAssessmentRequired).toBe(true);
+    expect(catalog.requirements.behavioralAssessmentRequired).toBe(false);
     expect(catalog.requirements.partnerAssessmentReusable).toBe(true);
     expect(catalog.events).toEqual([]);
     expect(catalog.services.find((s: { title: string }) => s.title === "Bilan comportemental")).toBeDefined();

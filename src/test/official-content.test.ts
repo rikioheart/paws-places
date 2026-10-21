@@ -14,8 +14,8 @@ describe("Published partner information", () => {
   it("does not expose an unpublished Cynopod code", () => {
     expect(PARTNERS.find(p => p.name === "Cynopod")?.code).toBeUndefined();
   });
-  it("requires a behavioral assessment before activities", () => {
-    expect(ACTIVITY_REQUIREMENTS.behavioralAssessmentRequired).toBe(true);
+  it("does not require a behavioral assessment before every activity", () => {
+    expect(ACTIVITY_REQUIREMENTS.behavioralAssessmentRequired).toBe(false);
   });
   it("reuses a partner assessment across activities", () => {
     expect(ACTIVITY_REQUIREMENTS.partnerAssessmentReusable).toBe(true);

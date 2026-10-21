@@ -1,13 +1,14 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { MEMBERSHIP_URL } from "@/lib/data";
+import { GuideDownload } from "@/components/GuideDownload";
+import { MEMBERSHIP_URL, ASSOCIATION_EMAIL } from "@/lib/data";
 import { Menu, X, PawPrint } from "lucide-react";
 import logo from "@/assets/logo-lvdc.png";
 
 const NAV = [
   { to: "/annuaire", label: "Annuaire" },
-  { to: "/services", label: "Services" },
+  { to: "/services", label: "Accompagnements" },
   { to: "/partenaires", label: "Partenaires" },
   { to: "/agenda", label: "Activités & Agenda" },
   { to: "/association", label: "L'association" },
@@ -24,17 +25,17 @@ export function Header() {
           <img src={logo} alt="Logo La Voix du Chien" width={40} height={40} className="h-10 w-10 rounded-full object-cover ring-2 ring-sun/60" />
           <span className="leading-tight">La Voix du Chien<span className="block font-sans text-[11px] font-medium text-muted-foreground">Le chien au cœur</span></span>
         </Link>
-        <nav className="hidden gap-0 lg:flex">
+        <nav className="hidden gap-0 xl:flex">
           {NAV.map((n) => (
             <Link key={n.to} to={n.to} className="rounded-full px-2 py-1.5 text-sm font-medium transition hover:bg-secondary" activeProps={{ className: "bg-primary text-primary-foreground hover:bg-primary" }}>
               {n.label}
             </Link>
           ))}
         </nav>
-        <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button>
+        <Button variant="ghost" size="icon" className="xl:hidden" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button>
       </div>
       {open && (
-        <nav className="mx-auto mt-2 flex max-w-6xl flex-col rounded-3xl border bg-card p-3 shadow-lg lg:hidden">
+        <nav className="mx-auto mt-2 flex max-w-6xl flex-col rounded-3xl border bg-card p-3 shadow-lg xl:hidden">
           {NAV.map((n) => (
             <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="rounded-xl px-4 py-3 font-medium hover:bg-secondary">{n.label}</Link>
           ))}
@@ -59,7 +60,8 @@ export function Footer() {
         </div>
         <div className="text-sm">
           <Button asChild variant="secondary"><a href={MEMBERSHIP_URL} target="_blank" rel="noopener noreferrer">Adhérer sur HelloAsso ↗</a></Button>
-          <p className="mt-4"><Link to="/contact" className="underline">Demander le guide vacances gratuit</Link></p>
+          <div className="mt-4"><GuideDownload /></div>
+          <a href={`mailto:${ASSOCIATION_EMAIL}`} className="mt-4 block break-all underline">{ASSOCIATION_EMAIL}</a>
           <p className="mt-4 opacity-70">© {new Date().getFullYear()} La Voix du Chien</p>
         </div>
       </div>

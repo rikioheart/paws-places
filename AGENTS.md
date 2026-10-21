@@ -14,7 +14,9 @@
 - Advisor history is one browser-local conversation of text UI message parts, persisted after user sends and successful assistant completion; this avoids cross-user server storage and incomplete-response persistence.
 - Directory pros, partners and events live as static data in src/lib/data.ts — simple to edit without an admin area.
 - Public forms (contact, walk registrations) insert via createServerFn in src/lib/forms.functions.ts into insert-only RLS tables — visitors can never read submissions.
-- The interactive map is a projected SVG/absolute-positioned layer (no map library) — SSR-safe and on-brand.
+- The directory uses Leaflet with OpenStreetMap tiles, imported only after hydration; keep geographic accuracy without pulling browser-only code into SSR.
+- Shared audience journeys and guide download state live in reusable UI modules to keep public calls to action consistent.
+- Article supporting images are editorial illustrations selected by topic and placed between text blocks; preserve source article text.
 
 - Official WordPress content is imported as static, source-attributed data; never render untrusted WordPress HTML. This keeps public pages SSR-safe without runtime credentials.
 - Articles have a /blog parent and /blog/$slug child route with shared static paragraph data so each article is readable and indexable on the replacement site.
